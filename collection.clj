@@ -19,7 +19,7 @@
 (println (concat x v))        ;;=> (1 2 3 1 2 3)
 (println (type (concat x v))) ;;=> clojure.lang.LazySeq
 
-;; Mapype
+;; Mappings
 (def m {:a 1 :b 2})
 (println (type m))                    ;; => clojure.lang.PersistentArrayMap
 (println (array-map :a 1 :b 2))       ;; => { :a 1, :b 2 }
@@ -27,3 +27,15 @@
 
 (println (assoc {:a 1} :b 2)) ;;=> {:a 1 :b 2}
 (println (assoc-in {:settings {:a 1 :b 2}} [:settings :a] "a"))
+
+(println (update-in {:settings {:a 1 :b 2}} [:settings :a] inc))
+(println (get m :a)) ;;=> 1
+(println (m :a))     ;;=> 1
+
+;; set type
+(def s #{1 2 3})
+(println (conj s 4)) ;;=> #{1 2 3 4}
+(println (disj s 2)) ;;=> #{1 3}
+(println (contains? s 3)) ;;=> true
+(println (get s 3)) ;;=> 3
+(println (get s 6)) ;;=> nil

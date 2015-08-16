@@ -15,3 +15,15 @@
 
 (println (inf/pluralize 3 "box" "boxen"))
 ;; -> "3 boxen"
+
+;; convert "snake_case" to "CamelCase"
+(println (inf/camelize "my_object"))
+;; -> "MyObject"
+
+;; Clean strings for usage as URL
+(println (inf/parameterize "My most favorite URL"))
+;; -> "my-most-favorite-url"
+
+;; Turn number into ordinal numbers
+(println (inf/ordinalize 42))
+;; -> "42nd"

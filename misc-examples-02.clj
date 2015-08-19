@@ -61,3 +61,33 @@
   {} ;; optional intial value
   (seq input-string)))
 ;; => {  12, a 12, b 1, C 1, c 2, d 1, e 5, f 1, g 4, h 2, i 11, J 1, j 1, l 4, . 1, n 7, o 3, p 1, q 1, r 2, s 3, t 8, u 4, v 1, w 2}
+
+(println (remove #(< 100 (% :shares)) portfolio))
+;; ({:ticker AAPL, :last-trade 203.25M, :open 204.50M, :shares 100}
+;;  {:ticker MSFT, :last-trade 29.12M, :open 29.08M, :shares 50})
+
+;; for: list comprehension
+(println (for [suit [:hearts :clubs :spades :diamons]
+      value (range 1 4)]
+  [suit value]))
+;; =>
+;; ([:hearts 1] [:hearts 2] [:hearts 3] [:clubs 1] [:clubs 2] [:clubs 3] [:spades 1] [:spades 2] [:spades 3] [:diamons 1] [:diamons 2] [:diamons 3])
+
+(println
+  (for [x (range 0 4)
+      y (range 0 (inc x))]
+      [x y]))
+;; => ([0 0]
+;;     [1 0] [1 1]
+;;     [2 0] [2 1] [2 2]
+;;     [3 0] [3 1] [3 2] [3 3])
+
+(println
+  (for [x (range 0 9) :when (odd? x)
+        y (range 1 (inc x))]
+    [x y])
+  )
+;; ([1 1]
+;;  [3 1] [3 2] [3 3]
+;;  [5 1] [5 2] [5 3] [5 4] [5 5]
+;;  [7 1] [7 2] [7 3] [7 4] [7 5] [7 6] [7 7])

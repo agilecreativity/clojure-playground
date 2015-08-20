@@ -68,3 +68,94 @@
 ;; multiple elements added to the front of lists
 (pprint (conj '(:toast :butter) :jam :honey))
 ;; => (:honey :jam :toast :butter)
+
+;; maps examples
+(pprint {:jam1 "strawberry" :jam2 "blackberry"})
+;; => {:jam1 "strawberry" :jam2 "blackberry"}
+
+(pprint (get {:jam1 "strawberry" :jam2 "blackberry"} :jam2))
+;; => "blackberry"
+
+(pprint (get {:jam1 "strawberry" :jam2 "blackberry"} :jam3 "not found"))
+;; => "not found"
+
+;; getting using the key as the function
+(pprint (:jam2 {:jam1 "strawberry" :jam2 "blackberry" :jam3 "marmarlade"}))
+;; => "blackberry"
+
+;; the keys function
+(pprint (keys {:jam1 "strawberry" :jam2 "blackberry" :jam3 "marmarlade"}))
+;; => (:jam1 :jam2 :jam3)
+
+;; the vals function
+(pprint (vals {:jam1 "strawberry" :jam2 "blackberry" :jam3 "marmarlade"}))
+;; => ("strawberry" "blackberry" "marmarlade")
+
+(pprint (assoc {:jam1 "strawberry" :jam2 "blackberry"} :jam1 "orange"))
+;; => {:jam1 "orange", :jam2 "blackberry"}
+
+(pprint (dissoc {:jam1 "strawberry" :jam2 "blackberry"} :jam1))
+;; => {:jam2 "blackberry"}
+
+(pprint (merge {:jam1 "red" :jam2 "black"}
+               {:jam1 "orange" :jam3 "red"}
+               {:jam4 "blue"}))
+;; => {:jam1 "orange", :jam2 "black", :jam3 "red", :jam4 "blue"}
+
+;; set examples
+(pprint #{:red :blue :white :pink})
+;; => #{:white :red :blue :pink}
+
+;; No duplicates allowed in the set at creation
+;;(pprint #{:red :blue :white :pink :pink})
+;; => java.lang.IllegalArgumentException: Duplicate key: pink
+
+(use 'clojure.set)
+(pprint (clojure.set/union #{:r :b :w} #{:w :p :y}))
+;; => #{:y :r :w :b :p}
+
+(pprint (clojure.set/difference #{:r :b :w} #{:w :p :y}))
+;; => #{:r :b}
+
+(pprint (clojure.set/intersection #{:r :b :w} #{:w :p :y}))
+;; => #{:w}
+
+;; convert other type of collection to set
+(pprint (set [:rabbit :rabbit :watch :door]))
+;; => #{:door :watch :rabbit}
+
+(pprint (set {:a 1 :b 2 :c 3}))
+;; => #{[:c 3] [:b 2] [:a 1]}
+
+(pprint (get #{:rabbit :door :watch} :rabbit))
+;; => :rabbit
+
+(pprint (get #{:rabbit :door :watch} :jar))
+;; => nil
+
+;; access directly using the keyword
+(pprint (:rabbit #{:rabbit :door :watch}))
+;; => :rabbit
+
+;; if it is not in the set
+(pprint (:dummy #{:rabbit :door :watch}))
+;; => nil
+
+;; Or use set itself to be used as a function
+(pprint (#{:rabbit :door :watch} :rabbit))
+;; => :rabbit
+
+;; Some useful funtions
+(pprint (contains? #{:rabbit :door :watch} :rabbit))
+;; => true
+
+(pprint (contains? #{:rabbit :door :watch} :jam))
+;; => false
+
+;; Add elements onto a set
+(pprint (conj #{:rabbit :door} :jam))
+;; => #{:door :rabbit :jam}
+
+;; Remove element from set
+(pprint (disj #{:rabbit :door} :door))
+;; => #{:jams}

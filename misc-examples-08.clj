@@ -1,5 +1,7 @@
 (ns clojure-playground)
-(def animals [:mouse :duck :dodo :lory :eaglet])
+(def animals
+  [:mouse :duck :dodo :lory :eaglet])
+
 (prn (#(str %) :mouse))
 ;; => ":mouse"
 
